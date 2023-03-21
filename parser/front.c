@@ -85,6 +85,28 @@ static int lookup(char ch) {
 }
 
 /*****************************************************/
+/*lookupKeywords - a function to look up keywords, if not found then just return IDENT*/
+int lookupKeywords(char* lexeme) {
+    if (strcmp(lexeme, "for") == 0)
+        return FOR_CODE;
+    if (strcmp(lexeme, "if") == 0)
+        return IF_CODE;
+    if (strcmp(lexeme, "else") == 0)
+        return ELSE_CODE;
+    if (strcmp(lexeme, "while") == 0)
+        return WHILE_CODE;
+    if (strcmp(lexeme, "do") == 0)
+        return DO_CODE;
+    if (strcmp(lexeme, "int") == 0)
+        return INT_CODE;
+    if (strcmp(lexeme, "float") == 0)
+        return FLOAT_CODE;
+    if (strcmp(lexeme, "switch") == 0)
+        return SWITCH_CODE;
+    return IDENT;
+}
+
+/*****************************************************/
 /* addChar - a function to add nextChar to lexeme */
 static void addChar() {
     if (lexLen <= 98) {
@@ -132,7 +154,9 @@ int lex() {
                 addChar();
                 getChar();
             }
-            nextToken = IDENT;
+
+            /*here it will now check for reserved keywords. if it doesnt find one, that means we treat it as an identifier*/
+            nextToken = lookupKeywords(lexeme);
             break;
 
         /* Parse integer literals */

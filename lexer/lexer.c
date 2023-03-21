@@ -42,6 +42,16 @@ int lex();
 #define LEFT_PAREN 25
 #define RIGHT_PAREN 26
 
+/* prog assignment 4 token codes to be added*/
+#define FOR_CODE 30
+#define IF_CODE 31
+#define ELSE_CODE 32
+#define WHILE_CODE 33
+#define DO_CODE 34
+#define INT_CODE 35
+#define FLOAT_CODE 36
+#define SWITCH_CODE 37
+
 /******************************************************/
 /* main driver */
 int main() 
